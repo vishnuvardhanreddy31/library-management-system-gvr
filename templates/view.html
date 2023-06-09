@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>View Library</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #f1f1f1;
+    }
+
+    a {
+      display: inline-block;
+      margin-right: 5px;
+      padding: 5px 10px;
+      color: #333;
+      text-decoration: none;
+      border: 1px solid #333;
+      background-color: #f1f1f1;
+    }
+
+    a:hover {
+      background-color: #333;
+      color: #fff;
+    }
+  </style>
+
+</head>
+
+<body>
+  <h1>Library Records</h1>
+  <table>
+    <tr>
+      <th>Book Name</th>
+      <th>Book ID</th>
+      <th>Author Name</th>
+      <th>Book Status</th>
+      <th>Issuer ID</th>
+      <th>Actions</th>
+    </tr>
+    {% for record in records %}
+    <tr>
+      <td>{{ record[0] }}</td>
+      <td>{{ record[1] }}</td>
+      <td>{{ record[2] }}</td>
+      <td>{{ record[3] }}</td>
+      <td>{{ record[4] }}</td>
+      <td>
+        <a href="/update/{{ record[1] }}">Update</a>
+        <a href="/delete/{{ record[1] }}">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+
+</html>

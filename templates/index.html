@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Library Management System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    select {
+      padding: 5px;
+      width: 200px;
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    a {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #333;
+      text-decoration: none;
+      border: 1px solid #333;
+      padding: 5px 10px;
+      background-color: #f1f1f1;
+    }
+
+    a:hover {
+      background-color: #333;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Welcome to the Library Management System</h1>
+  <a href="/view">View Library</a>
+  <form action="/add" method="post">
+    <label for="bk_name">Book Name:</label>
+    <input type="text" name="bk_name" id="bk_name" required><br>
+
+    <label for="bk_id">Book ID:</label>
+    <input type="text" name="bk_id" id="bk_id" required><br>
+
+    <label for="author_name">Author Name:</label>
+    <input type="text" name="author_name" id="author_name" required><br>
+
+    <label for="bk_status">Book Status:</label>
+    <select name="bk_status" id="bk_status" required>
+      <option value="Available">Available</option>
+      <option value="Issued">Issued</option>
+    </select><br>
+
+    <label for="issuer_id">Issuer ID:</label>
+    <input type="text" name="issuer_id" id="issuer_id"><br>
+
+    <input type="submit" value="Add Record">
+  </form>
+</body>
+
+</html>
