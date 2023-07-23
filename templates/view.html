@@ -3,19 +3,26 @@
 
 <head>
   <title>View Library</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
+      background-image: url(../static/1.png);
+      background-repeat: no-repeat;
+      overflow: hidden;
     }
 
     h1 {
       color: #333;
+      text-align: center;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
+      margin-top: 20px;
     }
 
     th,
@@ -43,35 +50,65 @@
       background-color: #333;
       color: #fff;
     }
-  </style>
 
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 576px) {
+      table {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .table-responsive {
+        overflow-x: auto;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Library Records</h1>
-  <table>
-    <tr>
-      <th>Book Name</th>
-      <th>Book ID</th>
-      <th>Author Name</th>
-      <th>Book Status</th>
-      <th>Issuer ID</th>
-      <th>Actions</th>
-    </tr>
-    {% for record in records %}
-    <tr>
-      <td>{{ record[0] }}</td>
-      <td>{{ record[1] }}</td>
-      <td>{{ record[2] }}</td>
-      <td>{{ record[3] }}</td>
-      <td>{{ record[4] }}</td>
-      <td>
-        <a href="/update/{{ record[1] }}">Update</a>
-        <a href="/delete/{{ record[1] }}">Delete</a>
-      </td>
-    </tr>
-    {% endfor %}
-  </table>
+  <div class="container">
+    <h1>Library Records</h1>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Book Name</th>
+            <th scope="col">Book ID</th>
+            <th scope="col">Author Name</th>
+            <th scope="col">Book Status</th>
+            <th scope="col">Issuer ID</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for record in records %}
+          <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+            <td>{{ record[2] }}</td>
+            <td>{{ record[3] }}</td>
+            <td>{{ record[4] }}</td>
+            <td>
+              <a href="/update/{{ record[1] }}" class="btn btn-primary">Update</a>
+              <a href="/delete/{{ record[1] }}" class="btn btn-danger">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="button-container">
+      <a href="/" class="btn btn-secondary">Go Back to Add Record</a>
+    </div>
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -3,14 +3,20 @@
 
 <head>
   <title>Update Record</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
+      background-image: url(../static/1.png);
+      background-repeat: no-repeat;
+      overflow: hidden;
     }
 
     h1 {
       color: #333;
+      text-align: center;
     }
 
     form {
@@ -26,8 +32,9 @@
     input[type="text"],
     select {
       padding: 5px;
-      width: 200px;
+      width: 100%;
       margin-bottom: 10px;
+      box-sizing: border-box;
     }
 
     input[type="submit"] {
@@ -41,31 +48,61 @@
     option[selected] {
       font-weight: bold;
     }
+
+    /* Responsive Styles */
+    @media (min-width: 576px) {
+      form {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <h1>Update Record</h1>
-  <form action="/update/{{ record[1] }}" method="post">
-    <label for="bk_name">Book Name:</label>
-    <input type="text" name="bk_name" id="bk_name" value="{{ record[0] }}" required><br>
+  <div class="container">
+    <h1>Update Record</h1>
+    <form action="/update/{{ record[1] }}" method="post">
+      <div class="form-group">
+        <label for="bk_name">Book Name:</label>
+        <input type="text" class="form-control" name="bk_name" id="bk_name" value="{{ record[0] }}" required>
+      </div>
 
-    <label for="author_name">Author Name:</label>
-    <input type="text" name="author_name" id="author_name" value="{{ record[2] }}" required><br>
+      <div class="form-group">
+        <label for="author_name">Author Name:</label>
+        <input type="text" class="form-control" name="author_name" id="author_name" value="{{ record[2] }}" required>
+      </div>
 
-    <label for="bk_status">Book Status:</label>
-    <select name="bk_status" id="bk_status" required>
-      <option value="Available" {% if record[3]=='Available' %} selected {% endif %}>Available</option>
-      <option value="Issued" {% if record[3]=='Issued' %} selected {% endif %}>Issued</option>
-    </select><br>
+      <div class="form-group">
+        <label for="bk_status">Book Status:</label>
+        <select class="form-control" name="bk_status" id="bk_status" required>
+          <option value="Available" {% if record[3]=='Available' %} selected {% endif %}>Available</option>
+          <option value="Issued" {% if record[3]=='Issued' %} selected {% endif %}>Issued</option>
+        </select>
+      </div>
 
-    {% if record[3] == 'Issued' %}
-    <label for="issuer_id">Issuer ID:</label>
-    <input type="text" name="issuer_id" id="issuer_id" value="{{ record[4] }}"><br>
-    {% endif %}
+      <div id="issuer_id_field" {% if record[3] !='Issued' %} style="display: none;" {% endif %} class="form-group">
+        <label for="issuer_id">Issuer ID:</label>
+        <input type="text" class="form-control" name="issuer_id" id="issuer_id" value="{{ record[4] }}">
+      </div>
 
-    <input type="submit" value="Update Record">
-  </form>
+      <input type="submit" class="btn btn-primary" value="Update Record">
+    </form>
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    var bkStatus = document.getElementById("bk_status");
+    var issuerIdField = document.getElementById("issuer_id_field");
+
+    bkStatus.addEventListener("change", function () {
+      if (this.value === "Issued") {
+        issuerIdField.style.display = "block";
+      } else {
+        issuerIdField.style.display = "none";
+      }
+    });
+  </script>
 </body>
 
 </html>

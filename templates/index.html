@@ -3,18 +3,31 @@
 
 <head>
   <title>Library Management System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
+      background-image: url(../static/library.jpg);
+      background-repeat: no-repeat;
+      background-color: rgba(0, 0, 0, 0.7);
+      /* Transparent black background */
     }
 
     h1 {
       color: #333;
+      text-align: center;
+    }
+
+    .center-button {
+      text-align: center;
     }
 
     form {
       margin-top: 20px;
+      max-width: 400px;
+      margin: 0 auto;
     }
 
     label {
@@ -26,8 +39,9 @@
     input[type="text"],
     select {
       padding: 5px;
-      width: 200px;
+      width: 100%;
       margin-bottom: 10px;
+      box-sizing: border-box;
     }
 
     input[type="submit"] {
@@ -51,34 +65,55 @@
     a:hover {
       background-color: #333;
       color: #fff;
+      align-items: center;
+      display: inline;
     }
   </style>
 </head>
 
 <body>
-  <h1>Welcome to the Library Management System</h1>
-  <a href="/view">View Library</a>
-  <form action="/add" method="post">
-    <label for="bk_name">Book Name:</label>
-    <input type="text" name="bk_name" id="bk_name" required><br>
+  <div class="container">
+    <h1 class="text-center">Welcome to the Library Management System</h1>
+    <div class="text-center">
+      <a href="/view" class="btn btn-secondary">View Library</a>
+    </div>
 
-    <label for="bk_id">Book ID:</label>
-    <input type="text" name="bk_id" id="bk_id" required><br>
+    <form action="/add" method="post">
+      <div class="form-group">
+        <label for="bk_name">Book Name:</label>
+        <input type="text" name="bk_name" id="bk_name" class="form-control" required>
+      </div>
 
-    <label for="author_name">Author Name:</label>
-    <input type="text" name="author_name" id="author_name" required><br>
+      <div class="form-group">
+        <label for="bk_id">Book ID:</label>
+        <input type="text" name="bk_id" id="bk_id" class="form-control" required>
+      </div>
 
-    <label for="bk_status">Book Status:</label>
-    <select name="bk_status" id="bk_status" required>
-      <option value="Available">Available</option>
-      <option value="Issued">Issued</option>
-    </select><br>
+      <div class="form-group">
+        <label for="author_name">Author Name:</label>
+        <input type="text" name="author_name" id="author_name" class="form-control" required>
+      </div>
 
-    <label for="issuer_id">Issuer ID:</label>
-    <input type="text" name="issuer_id" id="issuer_id"><br>
+      <div class="form-group">
+        <label for="bk_status">Book Status:</label>
+        <select name="bk_status" id="bk_status" class="form-control" required>
+          <option value="Available">Available</option>
+          <option value="Issued">Issued</option>
+        </select>
+      </div>
 
-    <input type="submit" value="Add Record">
-  </form>
+      <div class="form-group">
+        <label for="issuer_id">Issuer ID:</label>
+        <input type="text" name="issuer_id" id="issuer_id" class="form-control">
+      </div>
+
+      <div class="text-center">
+        <input type="submit" value="Add Record" class="btn btn-primary">
+      </div>
+    </form>
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
